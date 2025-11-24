@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.example.bookmarkmanager.dto.BookmarkRequest;
 import com.example.bookmarkmanager.dto.BookmarkResponse;
 import com.example.bookmarkmanager.entity.Bookmark;
+import com.example.bookmarkmanager.exception.NotFoundException;
 import com.example.bookmarkmanager.repository.BookmarkRepository;
 import com.example.bookmarkmanager.service.BookmarkService;
 
@@ -39,15 +40,13 @@ public class BookmarkServiceImpl implements BookmarkService{
 
     @Override
     public BookmarkResponse getById(Long id) {
-        Bookmark bookmark = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Bookmark not found"));
+        Bookmark bookmark = repository.findById(id).orElseThrow(() -> new NotFoundException("Bookmark not found"));
         return toResponse(bookmark);
     }
     
     @Override
     public BookmarkResponse update(Long id, BookmarkRequest request) {
-        Bookmark bookmark = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Bookmark not found"));
+        Bookmark bookmark = repository.findById(id).orElseThrow(() -> new NotFoundException("Bookmark not found"));
         
         bookmark.setTitle(request.getTitle());
         bookmark.setUrl(request.getUrl());
