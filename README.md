@@ -1,83 +1,61 @@
-# 📘 Bookmark Manager API
+# 🔖 SpringBoot Bookmark API — RESTful Bookmark Management
 
-Bookmark Manager API adalah aplikasi backend sederhana berbasis **Spring Boot 3**, menggunakan **Java 21** serta **MySQL** sebagai database.  
-Aplikasi ini menyediakan fitur CRUD untuk menyimpan, menampilkan, memperbarui, dan menghapus bookmark dengan struktur response yang konsisten.
+## 🚀 Description
 
-proyek ini menggunakan:
+A Spring Boot backend project for managing bookmarks with full CRUD functionality and clean REST API architecture. Ideal for portfolio projects demonstrating Java, Spring Boot, and MySQL integration.
 
-✅ Pola Layered Architecture. ✅ DTO untuk memisahkan domain dan response. ✅ Response API konsisten melalui wrapper class.
+**Portfolio Highlights:**
 
----
-
-## 🚀 **Teknologi yang Digunakan**
-
--   **Java 21**
--   **Spring Boot 3.4.12**
--   **Spring Web**
--   **Spring Data JPA**
--   **Jakarta Validation**
--   **MySQL**
--   **Lombok**
+-   Implemented full CRUD operations for bookmarks
+-   Built REST API with Jakarta Validation and response formatting
+-   Structured project with controller-service-repository pattern using Spring Boot best practices
 
 ---
 
-## 🧩 **Fitur Utama**
+## ✨ Features
 
--   Menambahkan bookmark
--   Melihat semua bookmark
--   Melihat detail bookmark berdasarkan ID
--   Mengubah bookmark
--   Menghapus bookmark
--   Response API menggunakan format wrapper (status, message, data)
--   Global Exception Handling
+-   **Bookmark Management**
 
----
+    -   → Create, Read, Read Detail, Update, and Delete bookmarks
 
-## 📁 **Struktur Proyek**
+-   **API Architecture**
 
-```bash
-src/main/java/com/example/bookmarkmanager
-│
-├── controller
-│ └── BookmarkController.java
-│
-├── dto
-│ ├── BookmarkRequest.java
-│ ├── BookmarkResponse.java
-│ └── ApiResponse.java
-│
-├── entity
-│ └── Bookmark.java
-│
-├── repository
-│ └── BookmarkRepository.java
-│
-├── service
-│ └── BookmarkService.java
-│
-└── exception
-├── GlobalExceptionHandler.java
-└── NotFoundException.java
-```
+    -   → Layered Architecture
+    -   → REST API with Jakarta Validation and response formatting (wrapper)
+
+-   **Error Handling**
+    -   → Global Exception Handling
 
 ---
 
-## ⚙️ **Cara Menjalankan Proyek**
+## 🛠 Tech Stack
 
-### 1. **Clone repository**
+-   **Runtime:** Java 21
+-   **Framework:** Spring Boot 3.4.12
+-   **Language:** Java
+-   **Database:** MySQL
+-   **ORM:** Spring Data JPA
+-   **Validation:** Jakarta Validation
+-   **Other Tools:** Spring Web, Lombok
+
+---
+
+## ⚡ Quickstart
+
+### 1. Clone repository
 
 ```bash
 git clone https://github.com/yourname/bookmark-manager.git
 cd bookmark-manager
 ```
 
-### 2. **Buat database MySQL**
+### 2. Create MySQL database
 
 ```bash
 CREATE DATABASE bookmark_db;
 ```
 
-### 3. **Konfigurasi application.properties**
+### 3. Configure application.properties
 
 ```bash
 spring.datasource.url=jdbc:mysql://localhost:3306/bookmark_db
@@ -88,109 +66,101 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 ```
 
-## 📝 **Endpoint Dokumentasi**
+### 4. Run the project
 
-1. Create Bookmark POST /api/bookmarks
-
-```bash
-Request:
-{
-  "title": "Spring Boot Docs",
-  "url": "https://spring.io/projects/spring-boot",
-  "description": "Official documentation"
-}
-
-Response:
-{
-  "status": "success",
-  "message": "Bookmark created",
-  "data": {
-    "id": 1,
-    "title": "Spring Boot Docs",
-    "url": "https://spring.io/projects/spring-boot",
-    "description": "Official documentation"
-  }
-}
-```
-
-2. Get All Bookmarks GET /api/bookmarks
+Klik "Run" project button in IDE, or:
 
 ```bash
-Response:
-{
-  "status": "success",
-  "message": "Bookmarks retrieved",
-  "data": [
-    {
-      "id": 1,
-      "title": "Spring Boot Docs",
-      "url": "https://spring.io/projects/spring-boot",
-      "description": "Official documentation"
-    }
-  ]
-}
+./mvnw spring-boot:run
 ```
 
-3. Get Bookmark by ID GET /api/bookmarks/{id}
+---
+
+## 🧪 Testing
+
+Use Postman or ThunderClient to test all available endpoints. Ensure the environment and configuration are correctly set up.
+
+**Endpoints:**
 
 ```bash
-Response:
-{
-  "status": "success",
-  "message": "Bookmark retrieved",
-  "data": {
-    "id": 1,
-    "title": "Spring Boot Docs",
-    "url": "https://spring.io/projects/spring-boot",
-    "description": "Official documentation"
-  }
-}
+POST /api/bookmarks
+GET /api/bookmarks
+GET /api/bookmarks/{id}
+PUT /api/bookmarks/{id}
+DELETE /api/bookmarks/{id}
 ```
 
-4. Update Bookmark PUT /api/bookmarks/{id} Request sama seperti create.
+---
+
+## 📁 Project Structure
 
 ```bash
-Response:
-{
-  "status": "success",
-  "message": "Bookmark updated",
-  "data": {
-    "id": 1,
-    "title": "Updated Title",
-    "url": "https://updated-url.com",
-    "description": "New description"
-  }
-}
+.
+├── HELP.md
+├── README.md
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── com
+    │   │       └── example
+    │   │           └── bookmarkmanager
+    │   │               ├── BookmarkmanagerApplication.java
+    │   │               ├── controller
+    │   │               │   └── BookmarkController.java
+    │   │               ├── dto
+    │   │               │   ├── ApiResponse.java
+    │   │               │   ├── ApiResponseFactory.java
+    │   │               │   ├── BookmarkRequest.java
+    │   │               │   └── BookmarkResponse.java
+    │   │               ├── entity
+    │   │               │   └── Bookmark.java
+    │   │               ├── exception
+    │   │               │   ├── BadRequestException.java
+    │   │               │   ├── GlobalExceptionHandler.java
+    │   │               │   └── NotFoundException.java
+    │   │               ├── repository
+    │   │               │   └── BookmarkRepository.java
+    │   │               └── service
+    │   │                   ├── BookmarkService.java
+    │   │                   └── impl
+    │   │                       └── BookmarkServiceImpl.java
+    │   └── resources
+    │       ├── application.properties
+    │       ├── static
+    │       └── templates
+    └── test
+        └── java
+            └── com
+                └── example
+                    └── bookmarkmanager
+                        └── BookmarkmanagerApplicationTests.java
 ```
 
-5. Delete Bookmark DELETE /api/bookmarks/{id}
+Explanation:
 
-```
-Response:
-{
-  "status": "success",
-  "message": "Bookmark deleted",
-  "data": null
-}
-```
+-   Controller: Handles HTTP requests and responses
+-   Service: Business logic for bookmarks
+-   Repository: Database access layer for Bookmark entity
+-   Entity: Database model for Bookmark table
+-   DTO: Request and response payloads
+-   Exception: Handles validation and resource errors
 
-## ❗ **Error Handling**
+---
 
-Semua error di-handle melalui GlobalExceptionHandler. Contoh error response:
+## 🎯 Goals
 
-```bash
-{
-  "status": "error",
-  "message": "Bookmark not found",
-  "data": null
-}
-```
+-   Learn and implement RESTful CRUD operations in Spring Boot
+-   Apply Jakarta Validation and response formatting
+-   Build a clean, maintainable backend project for portfolio
+-   Integrate MySQL with Spring Data JPA
+-   Follow controller-service-repository architecture pattern
 
-## 📌 **Tujuan Proyek**
+---
 
--   Belajar dasar pembuatan REST API menggunakan Spring Boot.
--   Memahami Layered Architecture (Controller → Service → Repository).
--   Melatih penggunaan DTO, Entity, dan Exception Handling.
--   Menyiapkan pola standar response API yang rapi dan konsisten.
--   Menjadi fondasi untuk proyek Spring Boot tingkat lanjut.
--   Menambah koleksi portofolio backend berbasis Java/Spring.
+## 🗺 Planning
+
+-   Implement API Gateway
+-   Improve project with additional features
